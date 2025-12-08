@@ -1,0 +1,18 @@
+.container {
+    margin: 20px;    
+}
+
+.topBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pagination {}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+}

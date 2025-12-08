@@ -1,0 +1,16 @@
+-- Create database
+CREATE DATABASE IF NOT EXISTS todoDb;
+
+-- Create user
+CREATE USER IF NOT EXISTS 'todoUser'@'%' IDENTIFIED BY 'todoPwd';
+GRANT ALL PRIVILEGES ON *.* TO 'todoUser'@'%' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+
+-- Use database
+USE todoDb;
+
+-- Create table
+CREATE TABLE IF NOT EXISTS todo (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  title VARCHAR(255) NOT NULL
+);
