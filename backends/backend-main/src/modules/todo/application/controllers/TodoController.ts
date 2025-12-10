@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, ParseIntPipe, Post, Put, Delete, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Get, Param, ParseIntPipe, Post, Put, Delete, UsePipes, ValidationPipe, Query } from '@nestjs/common';
 import { TodoService } from '../services/TodoService';
 import { TodoDto, UpdateTodoDto } from '../dtos/TodoDto';
 import { NotFoundException } from '@nestjs/common';
@@ -26,10 +26,14 @@ async getTodo(@Param('id', ParseIntPipe) id: number) {
   return todo;
 }
 
-  @Get()
+
+ @Get()
   async getAllTodos() {
-    return await this.todoService.getAllTodos();
+    return this.todoService.getAllTodos(); // max 10
   }
+
+
+
 
 @Put(':id')
 @UsePipes(new ValidationPipe({ whitelist: true }))

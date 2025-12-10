@@ -30,8 +30,19 @@ export class TodoRepository {
   }
 
   async getAllTodos(): Promise<TodoEntity[]> {
-    return this.todoRepository.find();
+    const todos = await this.todoRepository.find({
+      order: { id: 'ASC' },
+    });
+    return todos.slice(0, 10); // max 10
   }
+
+
+  async deleteAllTodos(): Promise<void> {
+  await this.todoRepository.clear(); // clears all rows in the table
+}
+
+
+
 
   async updateTodo(todoEntity: TodoEntity): Promise<TodoEntity> {
     return this.todoRepository.save(todoEntity); // save will update if entity has id

@@ -21,10 +21,19 @@ export class TodoService {
     return await this.todoRepository.getTodoById(id);
   }
 
+
+
+
+
+
   async getAllTodos(): Promise<TodoEntity[]> {
-    return await this.todoRepository.getAllTodos();
+    return await this.todoRepository.getAllTodos(); // max 10
   }
 
+
+
+
+  
  async updateTodo(id: number, updateData: UpdateTodoDto): Promise<TodoEntity> {
   const todo = await this.todoRepository.getTodoById(id);
   
