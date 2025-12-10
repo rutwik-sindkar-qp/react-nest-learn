@@ -175,3 +175,7 @@ export const ensureDockerContainerRunning = async (): Promise<boolean> => {
   console.log('🚀 MySQL test container is not running, starting it...')
   return await startDockerContainer()
 }
+
+
+
+export { createConnection }

@@ -18,6 +18,9 @@ export class TodoRepository {
     private todoRepository: Repository<TodoEntity>,
   ) {}
 
+
+
+
   async createTodo(todoEntity: TodoEntity): Promise<TodoEntity> {
     return this.todoRepository.save(todoEntity);
   }
@@ -25,4 +28,19 @@ export class TodoRepository {
   async getTodoById(id: number): Promise<TodoEntity | null> {
     return this.todoRepository.findOne({ where: { id } });
   }
+
+  async getAllTodos(): Promise<TodoEntity[]> {
+    return this.todoRepository.find();
+  }
+
+  async updateTodo(todoEntity: TodoEntity): Promise<TodoEntity> {
+    return this.todoRepository.save(todoEntity); // save will update if entity has id
+  }
+
+  async deleteTodo(id: number): Promise<void> {
+    await this.todoRepository.delete(id);
+  }
+
+
+  
 }

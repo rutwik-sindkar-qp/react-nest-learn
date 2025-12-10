@@ -10,6 +10,6 @@ module.exports = async (): Promise<void> => {
   if (!containerRunning) {
     throw new Error('❌ Failed to start MySQL Docker container')
   }
-
+  
   console.log('✅ GLOBAL SETUP END')
 }

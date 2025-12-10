@@ -1,8 +1,11 @@
--- The database todoDb is already created by Docker env
-GRANT ALL PRIVILEGES ON *.* TO 'todoUser'@'%' WITH GRANT OPTION;
+CREATE DATABASE IF NOT EXISTS todoDb_test;
+
+CREATE USER IF NOT EXISTS 'todoUser'@'%' IDENTIFIED BY 'todoPwd';
+
+GRANT ALL PRIVILEGES ON todoDb_test.* TO 'todoUser'@'%';
 FLUSH PRIVILEGES;
 
-USE todoDb;
+USE todoDb_test;
 
 CREATE TABLE IF NOT EXISTS todo (
   id INT AUTO_INCREMENT PRIMARY KEY,
