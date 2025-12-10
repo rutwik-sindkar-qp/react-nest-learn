@@ -15,11 +15,8 @@ export const todoRepositoryProvider = [
 export class TodoRepository {
   constructor(
     @Inject('TODO_REPOSITORY')
-    private todoRepository: Repository<TodoEntity>,
+    private readonly todoRepository: Repository<TodoEntity>,
   ) {}
-
-
-
 
   async createTodo(todoEntity: TodoEntity): Promise<TodoEntity> {
     return this.todoRepository.save(todoEntity);
@@ -29,29 +26,32 @@ export class TodoRepository {
     return this.todoRepository.findOne({ where: { id } });
   }
 
-  async getAllTodos(): Promise<TodoEntity[]> {
-    const todos = await this.todoRepository.find({
-      order: { id: 'ASC' },
-    });
-    return todos.slice(0, 10); // max 10
-  }
+async getAllTodos(page: number, limit: number): Promise<TodoEntity[]> {
+  const take = limit;
+  const skip = (page - 1) * limit;
 
+  return this.todoRepository.find({
+    order: { id: 'ASC' },
+    skip,
+    take,
+  });
+}
 
-  async deleteAllTodos(): Promise<void> {
-  await this.todoRepository.clear(); // clears all rows in the table
+async deleteAllTodos(): Promise<void> {
+  await this.todoRepository.clear();
 }
 
 
+async testingOnlyCreateTodos(todos: TodoEntity[]) {
+  await this.todoRepository.save(todos);
+}
 
 
   async updateTodo(todoEntity: TodoEntity): Promise<TodoEntity> {
-    return this.todoRepository.save(todoEntity); // save will update if entity has id
+    return this.todoRepository.save(todoEntity);
   }
 
   async deleteTodo(id: number): Promise<void> {
     await this.todoRepository.delete(id);
   }
-
-
-  
 }

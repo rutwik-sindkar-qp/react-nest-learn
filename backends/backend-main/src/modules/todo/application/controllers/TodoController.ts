@@ -27,10 +27,11 @@ async getTodo(@Param('id', ParseIntPipe) id: number) {
 }
 
 
- @Get()
-  async getAllTodos() {
-    return this.todoService.getAllTodos(); // max 10
-  }
+@Get()
+getAllTodos(@Query('page') page?: string, @Query('limit') limit?: string) {
+  return this.todoService.getAllTodos(page, limit);
+}
+
 
 
 
