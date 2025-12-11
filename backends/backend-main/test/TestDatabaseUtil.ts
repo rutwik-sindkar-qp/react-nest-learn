@@ -176,6 +176,4 @@ export const ensureDockerContainerRunning = async (): Promise<boolean> => {
   return await startDockerContainer()
 }
 
-
-
-export { createConnection }
+export {createConnection}

@@ -1,7 +1,10 @@
-import { stopDockerContainer } from './TestDatabaseUtil'
+/* eslint-disable no-restricted-exports */
+import {stopDockerContainer} from './TestDatabaseUtil'
 
-export default async (): Promise<void> => {
+const teardown = async (): Promise<void> => {
   console.log('🏁 GLOBAL TEARDOWN START')
   await stopDockerContainer()
   console.log('✅ GLOBAL TEARDOWN END')
 }
+
+export default teardown

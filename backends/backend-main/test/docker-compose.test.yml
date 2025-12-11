@@ -3,7 +3,7 @@ services:
     image: mysql:8.0
     container_name: mysql-todo-test
     ports:
-      - "3367:3306"
+      - '3367:3306'
     environment:
       MYSQL_ROOT_PASSWORD: rootpw
       MYSQL_DATABASE: todoDb
@@ -12,7 +12,17 @@ services:
     volumes:
       - ./test-mysql-container-init.sql:/docker-entrypoint-initdb.d/init-mysql.sql
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "todoUser", "-ptodoPwd"]
+      test:
+        [
+          'CMD',
+          'mysqladmin',
+          'ping',
+          '-h',
+          'localhost',
+          '-u',
+          'todoUser',
+          '-ptodoPwd',
+        ]
       timeout: 10s
       retries: 5
       interval: 5s

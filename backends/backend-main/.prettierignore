@@ -1,0 +1,16 @@
+# Ignore compiled output
+dist/
+
+# Node modules
+node_modules/
+
+# Test coverage
+coverage/
+
+# Optional: ignore environment files
+.env
+.env.*
+
+
+
+

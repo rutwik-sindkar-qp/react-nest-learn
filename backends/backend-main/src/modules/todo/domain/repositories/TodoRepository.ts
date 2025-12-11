@@ -1,6 +1,6 @@
-import { DataSource, Repository } from 'typeorm';
-import { TodoEntity } from '../entities/TodoEntity';
-import { Inject, Injectable } from '@nestjs/common';
+import {DataSource, Repository} from 'typeorm'
+import {TodoEntity} from '../entities/TodoEntity'
+import {Inject, Injectable} from '@nestjs/common'
 
 export const todoRepositoryProvider = [
   {
@@ -9,7 +9,7 @@ export const todoRepositoryProvider = [
       dataSource.getRepository(TodoEntity),
     inject: ['DATA_SOURCE'],
   },
-];
+]
 
 @Injectable()
 export class TodoRepository {
@@ -19,39 +19,37 @@ export class TodoRepository {
   ) {}
 
   async createTodo(todoEntity: TodoEntity): Promise<TodoEntity> {
-    return this.todoRepository.save(todoEntity);
+    return await this.todoRepository.save(todoEntity)
   }
 
   async getTodoById(id: number): Promise<TodoEntity | null> {
-    return this.todoRepository.findOne({ where: { id } });
+    return await this.todoRepository.findOne({where: {id}})
   }
 
-async getAllTodos(page: number, limit: number): Promise<TodoEntity[]> {
-  const take = limit;
-  const skip = (page - 1) * limit;
+  async getAllTodos(page: number, limit: number): Promise<TodoEntity[]> {
+    const take = limit
+    const skip = (page - 1) * limit
 
-  return this.todoRepository.find({
-    order: { id: 'ASC' },
-    skip,
-    take,
-  });
-}
+    return await this.todoRepository.find({
+      order: {id: 'ASC'},
+      skip,
+      take,
+    })
+  }
 
-async deleteAllTodos(): Promise<void> {
-  await this.todoRepository.clear();
-}
+  async deleteAllTodos(): Promise<void> {
+    await this.todoRepository.clear()
+  }
 
-
-async testingOnlyCreateTodos(todos: TodoEntity[]) {
-  await this.todoRepository.save(todos);
-}
-
+  async testingOnlyCreateTodos(todos: TodoEntity[]): Promise<TodoEntity[]> {
+    return await this.todoRepository.save(todos)
+  }
 
   async updateTodo(todoEntity: TodoEntity): Promise<TodoEntity> {
-    return this.todoRepository.save(todoEntity);
+    return await this.todoRepository.save(todoEntity)
   }
 
   async deleteTodo(id: number): Promise<void> {
-    await this.todoRepository.delete(id);
+    await this.todoRepository.delete(id)
   }
 }

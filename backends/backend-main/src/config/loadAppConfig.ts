@@ -1,7 +1,7 @@
-import { IAppConfig } from './IAppConfig'
+import {IAppConfig} from './IAppConfig'
 
 export const loadAppConfig = (): IAppConfig => ({
-  app: { port: parseInt(process.env.PORT!, 10) },
+  app: {port: parseInt(process.env.PORT!, 10)},
   database: {
     host: process.env.DB_HOST!,
     port: parseInt(process.env.DB_PORT!, 10),

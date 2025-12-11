@@ -1,5 +1,5 @@
 export interface IAppConfig {
-  app: { port: number }
+  app: {port: number}
   database: {
     host: string
     port: number

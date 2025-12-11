@@ -1,14 +1,15 @@
-import { DataSource } from 'typeorm'
-import { DATA_SOURCE } from '../constants/DatabaseConstants'
-import { ConfigService } from '@nestjs/config'
-import { IAppConfig } from '@src/config/IAppConfig'
-import { TodoEntity } from '@modules/todo/domain/entities/TodoEntity'
+import {DataSource} from 'typeorm'
+import {DATA_SOURCE} from '../constants/DatabaseConstants'
+import {ConfigService} from '@nestjs/config'
+import {IAppConfig} from '@src/config/IAppConfig'
+import {TodoEntity} from '@modules/todo/domain/entities/TodoEntity'
 
 export const databaseProviders = [
   {
     provide: DATA_SOURCE,
     useFactory: async (configService: ConfigService): Promise<DataSource> => {
-      const databaseConfig = configService.get<IAppConfig['database']>('database')
+      const databaseConfig =
+        configService.get<IAppConfig['database']>('database')
       if (!databaseConfig) {
         throw new Error('Database configuration is not defined')
       }

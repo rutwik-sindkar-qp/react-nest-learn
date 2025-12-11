@@ -20,7 +20,8 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "format:ci": "prettier --check .",
-    "lint:ci": "eslint \"{src,apps,libs,test}/**/*.ts\" --max-warnings=0"
+    "lint:ci": "eslint \"{src,apps,libs,test}/**/*.ts\" --max-warnings=0",
+    "test:e2e:ci": "CI=true ENVIRONMENT=test jest --config ./test/jest-e2e.json --coverage --detectOpenHandles --maxWorkers=1 --forceExit"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.1",
@@ -41,7 +42,9 @@
     "@nestjs/cli": "^11.0.0",
     "@nestjs/schematics": "^11.0.0",
     "@nestjs/testing": "^11.0.1",
+    "@npm-questionpro/eslint-config-backend": "^1.0.7",
     "@npm-questionpro/wick-ui-prettier-config": "^1.0.0",
+    "@testcontainers/mysql": "^11.10.0",
     "@types/express": "^5.0.0",
     "@types/jest": "^30.0.0",
     "@types/node": "^22.10.7",
