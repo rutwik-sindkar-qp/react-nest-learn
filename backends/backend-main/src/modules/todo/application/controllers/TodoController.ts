@@ -33,9 +33,6 @@ getAllTodos(@Query('page') page?: string, @Query('limit') limit?: string) {
 }
 
 
-
-
-
 @Put(':id')
 @UsePipes(new ValidationPipe({ whitelist: true }))
 async updateTodo(

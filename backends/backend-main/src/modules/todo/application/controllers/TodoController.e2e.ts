@@ -10,12 +10,15 @@ describe('TodoController E2E Tests', () => {
   beforeEach(async () => {
     testApp = await testSetupUtil.startTestApp();
        todoRepository = testApp.app.get<TodoRepository>(TodoRepository);
-    await todoRepository.deleteAllTodos();
+    const repo = testApp.app.get(TodoRepository);
+    await repo.deleteAllTodos();
       });
 
   afterEach(async () => {
     await testSetupUtil.closeApp(testApp);
   });
+
+
 
 
 
@@ -220,20 +223,7 @@ describe('TodoController E2E Tests', () => {
 
 
 describe('GET /todos Pagination Tests', () => {
-  let testApp: ITestApp;
 
-  beforeEach(async () => {
-    testApp = await testSetupUtil.startTestApp();
-
-    const repo = testApp.app.get(TodoRepository);
-    await repo.deleteAllTodos();
-  });
-
-  afterEach(async () => {
-    await testSetupUtil.closeApp(testApp);
-  });
-
-  
   async function createTodos(count: number) {
     const repo = testApp.app.get(TodoRepository);
 
