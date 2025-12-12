@@ -1,6 +1,6 @@
 import {DataSource, Repository} from 'typeorm'
 import {TodoEntity} from '../entities/TodoEntity'
-import {Inject, Injectable} from '@nestjs/common'
+import {Inject, Injectable, Logger} from '@nestjs/common'
 
 export const todoRepositoryProvider = [
   {
@@ -13,6 +13,7 @@ export const todoRepositoryProvider = [
 
 @Injectable()
 export class TodoRepository {
+  private logger = new Logger(TodoRepository.name)
   constructor(
     @Inject('TODO_REPOSITORY')
     private readonly todoRepository: Repository<TodoEntity>,
@@ -29,6 +30,9 @@ export class TodoRepository {
   async getAllTodos(page: number, limit: number): Promise<TodoEntity[]> {
     const take = limit
     const skip = (page - 1) * limit
+
+    this.logger.warn(typeof limit, typeof page, limit, page)
+    this.logger.warn('skip value is ', skip)
 
     return await this.todoRepository.find({
       order: {id: 'ASC'},

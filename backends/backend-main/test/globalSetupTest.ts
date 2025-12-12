@@ -6,9 +6,11 @@ testEnvLoader.loadTestEnvironment()
 module.exports = async (): Promise<void> => {
   console.log('\n🚀 GLOBAL SETUP START')
 
-  const containerRunning = await ensureDockerContainerRunning()
-  if (!containerRunning) {
-    throw new Error('❌ Failed to start MySQL Docker container')
+  if (!process.env.SKIP_TEST_DOCKER_SETUP) {
+    const containerRunning = await ensureDockerContainerRunning()
+    if (!containerRunning) {
+      throw new Error('❌ Failed to start MySQL Docker container')
+    }
   }
 
   console.log('✅ GLOBAL SETUP END')
